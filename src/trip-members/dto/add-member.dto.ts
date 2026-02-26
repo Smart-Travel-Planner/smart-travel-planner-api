@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 
@@ -8,7 +7,7 @@ export class AddMemberDto {
   @IsUUID()
   user_id: string;
 
-  @ApiPropertyOptional({ example: 'collaborator' })
+  @ApiPropertyOptional({ example: 'colaborador' })
   @IsOptional()
   @IsString()
   role?: string;

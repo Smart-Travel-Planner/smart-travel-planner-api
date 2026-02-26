@@ -46,13 +46,15 @@ export class TripMembersService {
       .single();
 
     if (error || !rawData) {
-      throw new NotFoundException(`Trip with id ${tripId} not found`);
+      throw new NotFoundException(`Viaje con id ${tripId} no encontrado`);
     }
 
     const trip = rawData as TripRecord;
 
     if (trip.user_id !== userId) {
-      throw new ForbiddenException('Only the trip owner can manage members');
+      throw new ForbiddenException(
+        'Sólo el propietario del viaje puede gestionar a los miembros',
+      );
     }
   }
 
@@ -71,7 +73,7 @@ export class TripMembersService {
       .single();
 
     if (existing) {
-      throw new ConflictException('User is already a member of this trip');
+      throw new ConflictException('El usuario ya es colaborador de este viaje');
     }
 
     const { data: rawData, error } = await this.supabase
@@ -79,13 +81,15 @@ export class TripMembersService {
       .insert({
         trip_id: tripId,
         user_id: addMemberDto.user_id,
-        role: addMemberDto.role ?? 'collaborator',
+        role: addMemberDto.role ?? 'colaborador',
       })
       .select()
       .single();
 
     if (error || !rawData) {
-      throw new NotFoundException(error?.message ?? 'Error adding member');
+      throw new NotFoundException(
+        error?.message ?? 'Error añadiendo un colaborador',
+      );
     }
 
     return this.mapMember(rawData as MemberRecord);
@@ -126,7 +130,7 @@ export class TripMembersService {
       .single();
 
     if (error || !rawData) {
-      throw new NotFoundException(error?.message ?? 'Member not found');
+      throw new NotFoundException(error?.message ?? 'Miembro no encontrado');
     }
 
     return this.mapMember(rawData as MemberRecord);
@@ -149,6 +153,6 @@ export class TripMembersService {
       throw new NotFoundException(error.message);
     }
 
-    return { message: 'Member removed successfully' };
+    return { message: 'Miembro borrado correctamente' };
   }
 }

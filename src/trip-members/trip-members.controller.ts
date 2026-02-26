@@ -35,9 +35,9 @@ export class TripMembersController {
   constructor(private readonly tripMembersService: TripMembersService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Add a member to a trip' })
-  @ApiResponse({ status: 201, description: 'Member added successfully' })
-  @ApiResponse({ status: 409, description: 'User is already a member' })
+  @ApiOperation({ summary: 'Añade un colaborador a un viaje' })
+  @ApiResponse({ status: 201, description: 'Miembro añadido correctamente' })
+  @ApiResponse({ status: 409, description: 'El usuario ya es colaborador' })
   async addMember(
     @Param('tripId') tripId: string,
     @Body() addMemberDto: AddMemberDto,
@@ -51,7 +51,7 @@ export class TripMembersController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all members of a trip' })
+  @ApiOperation({ summary: 'Obtener todos los miembros de un viaje' })
   async findMembers(
     @Param('tripId') tripId: string,
     @Req() req: RequestWithUser,
@@ -60,7 +60,7 @@ export class TripMembersController {
   }
 
   @Put(':memberId/role')
-  @ApiOperation({ summary: 'Update member role' })
+  @ApiOperation({ summary: 'Actualiza el rol de un miembro' })
   async updateMemberRole(
     @Param('tripId') tripId: string,
     @Param('memberId') memberId: string,
@@ -76,7 +76,7 @@ export class TripMembersController {
   }
 
   @Delete(':memberId')
-  @ApiOperation({ summary: 'Remove a member from a trip' })
+  @ApiOperation({ summary: 'Borra un miembro de un viaje' })
   @HttpCode(HttpStatus.NO_CONTENT)
   async removeMember(
     @Param('tripId') tripId: string,
