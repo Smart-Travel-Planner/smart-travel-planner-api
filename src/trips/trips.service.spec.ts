@@ -8,8 +8,8 @@ const mockTrip = {
   title: 'Viaje a Japón',
   user_id: 'user-123',
   image_url: null,
-  start_date: '2026-06-01',
-  end_date: '2026-06-15',
+  start_date: '2026-01-01T00:00:00Z',
+  end_date: '2026-01-15T00:00:00Z',
   total_budget: 3000,
   is_public: false,
   created_at: '2026-01-01T00:00:00Z',
@@ -45,8 +45,8 @@ describe('TripsService', () => {
       const result = await service.create(
         {
           title: 'Viaje a Japón',
-          start_date: '2026-06-01',
-          end_date: '2026-06-15',
+          start_date: '2026-01-01T00:00:00Z',
+          end_date: '2026-01-15T00:00:00Z',
           total_budget: 3000,
           is_public: false,
         },
@@ -100,9 +100,10 @@ describe('TripsService', () => {
       mockSupabase.from.mockReturnValueOnce({
         select: jest.fn().mockReturnThis(),
         eq: jest.fn().mockReturnThis(),
-        single: jest
-          .fn()
-          .mockResolvedValue({ data: null, error: { message: 'Not found' } }),
+        single: jest.fn().mockResolvedValue({
+          data: null,
+          error: { message: 'No encontrado' },
+        }),
       });
 
       await expect(service.findOne('inexistente', 'user-123')).rejects.toThrow(

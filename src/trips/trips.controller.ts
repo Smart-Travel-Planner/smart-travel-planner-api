@@ -35,8 +35,8 @@ export class TripsController {
   constructor(private readonly tripsService: TripsService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a new trip' })
-  @ApiResponse({ status: 201, description: 'Trip created successfully' })
+  @ApiOperation({ summary: 'Crea un nuevo viaje' })
+  @ApiResponse({ status: 201, description: 'Viaje creado correctamente' })
   async create(
     @Body() createTripDto: CreateTripDto,
     @Req() req: RequestWithUser,
@@ -45,25 +45,25 @@ export class TripsController {
   }
 
   @Get('public')
-  @ApiOperation({ summary: 'Get all public trips' })
+  @ApiOperation({ summary: 'Obtén todos los viajes públicos' })
   async findAll() {
     return this.tripsService.findAll();
   }
 
   @Get('my-trips')
-  @ApiOperation({ summary: 'Get own trips' })
+  @ApiOperation({ summary: 'Obtén tus viajes' })
   async findMyTrips(@Req() req: RequestWithUser) {
     return this.tripsService.findMyTrips(req.user.userId);
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get trip by id' })
+  @ApiOperation({ summary: 'Obtén un viaje por el id' })
   async findOne(@Param('id') id: string, @Req() req: RequestWithUser) {
     return this.tripsService.findOne(id, req.user.userId);
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Update trip' })
+  @ApiOperation({ summary: 'Actualiza un viaje' })
   async update(
     @Param('id') id: string,
     @Body() updateTripDto: UpdateTripDto,
@@ -73,7 +73,7 @@ export class TripsController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete trip' })
+  @ApiOperation({ summary: 'Borra un viaje' })
   @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id') id: string, @Req() req: RequestWithUser) {
     return this.tripsService.remove(id, req.user.userId);

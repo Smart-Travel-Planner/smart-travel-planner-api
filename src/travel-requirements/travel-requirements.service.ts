@@ -51,14 +51,14 @@ export class TravelRequirementsService {
       .single();
 
     if (error || !rawData) {
-      throw new NotFoundException(`Trip with id ${tripId} not found`);
+      throw new NotFoundException(`Viaje con id ${tripId} no encontrado`);
     }
 
     const trip = rawData as TripRecord;
 
     if (trip.user_id !== userId) {
       throw new ForbiddenException(
-        'You do not have permission to manage requirements for this trip',
+        'No tienes permiso para administrar los requisitos de este viaje',
       );
     }
   }
@@ -77,7 +77,7 @@ export class TravelRequirementsService {
 
     if (existing) {
       throw new ConflictException(
-        'Travel requirements already exist for this trip. Use PUT to update.',
+        'Ya existen requisitos de viaje para este viaje. Usa PUT para actualizar',
       );
     }
 
@@ -89,7 +89,7 @@ export class TravelRequirementsService {
 
     if (error || !rawData) {
       throw new NotFoundException(
-        error?.message ?? 'Error creating travel requirements',
+        error?.message ?? 'Error al crear requisitos de viaje',
       );
     }
 
@@ -110,7 +110,7 @@ export class TravelRequirementsService {
 
     if (error || !rawData) {
       throw new NotFoundException(
-        `Travel requirements for trip ${tripId} not found`,
+        `Requisitos de viaje para el viaje ${tripId} no encontrados`,
       );
     }
 
@@ -133,7 +133,7 @@ export class TravelRequirementsService {
 
     if (error || !rawData) {
       throw new NotFoundException(
-        error?.message ?? 'Error updating travel requirements',
+        error?.message ?? 'Error actualizando los requisitos de viaje',
       );
     }
 
@@ -152,6 +152,6 @@ export class TravelRequirementsService {
       throw new NotFoundException(error.message);
     }
 
-    return { message: 'Travel requirements deleted successfully' };
+    return { message: 'Requisitos de viaje eliminados correctamente' };
   }
 }

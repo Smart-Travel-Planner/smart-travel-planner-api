@@ -21,7 +21,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const jwtSecret = configService.get<string>('JWT_SECRET');
 
     if (!jwtSecret) {
-      throw new Error('JWT_SECRET is not defined');
+      throw new Error('JWT_SECRET no está definido');
     }
 
     super({
@@ -39,7 +39,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       .single();
 
     if (error || !data) {
-      throw new UnauthorizedException('User not found or token invalid');
+      throw new UnauthorizedException('Usuario no encontrado o token inválido');
     }
 
     const typedUser = data as UserRecord;

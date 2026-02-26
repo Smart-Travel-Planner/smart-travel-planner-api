@@ -25,27 +25,27 @@ export class UsersController {
 
   @Get()
   @Roles('admin')
-  @ApiOperation({ summary: 'Get all users (admin only)' })
-  @ApiResponse({ status: 200, description: 'List of users' })
+  @ApiOperation({ summary: 'Obtén todos los usuarios (solo admin)' })
+  @ApiResponse({ status: 200, description: 'Lista de usuarios' })
   async findAll() {
     return this.usersService.findAll();
   }
 
   @Get('me')
-  @ApiOperation({ summary: 'Get own profile' })
+  @ApiOperation({ summary: 'Obtén tu perfil' })
   async getMe(@Req() req: RequestWithUser) {
     return this.usersService.findOne(req.user.userId);
   }
 
   @Get(':id')
   @Roles('admin')
-  @ApiOperation({ summary: 'Get user by id (admin only)' })
+  @ApiOperation({ summary: 'Obtén usuario por id (solo admin)' })
   async findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
   @Put('me')
-  @ApiOperation({ summary: 'Update own profile' })
+  @ApiOperation({ summary: 'Actualiza tu perfil' })
   async updateMe(
     @Req() req: RequestWithUser,
     @Body() updateUserDto: UpdateUserDto,
@@ -55,14 +55,14 @@ export class UsersController {
 
   @Put(':id')
   @Roles('admin')
-  @ApiOperation({ summary: 'Update user by id (admin only)' })
+  @ApiOperation({ summary: 'Actualiza usuario por id (solo admin)' })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
 
   @Delete(':id')
   @Roles('admin')
-  @ApiOperation({ summary: 'Delete user (admin only)' })
+  @ApiOperation({ summary: 'Borra usuario (solo admin)' })
   async remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }

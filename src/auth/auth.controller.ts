@@ -12,20 +12,20 @@ export class AuthController {
 
   @Public()
   @Post('register')
-  @ApiOperation({ summary: 'Register a new user' })
+  @ApiOperation({ summary: 'Registra un nuevo usuario' })
   @ApiBody({ type: RegisterDto })
-  @ApiResponse({ status: 201, description: 'User registered successfully' })
-  @ApiResponse({ status: 409, description: 'Email already in use' })
+  @ApiResponse({ status: 201, description: 'Usuario registrado correctamente' })
+  @ApiResponse({ status: 409, description: 'Email ya existente' })
   async register(@Body() registerDto: RegisterDto) {
     return this.authService.register(registerDto);
   }
 
   @Public()
   @Post('login')
-  @ApiOperation({ summary: 'Login and get JWT' })
+  @ApiOperation({ summary: 'Inicia sesión y obtén JWT' })
   @ApiBody({ type: LoginDto })
   @ApiResponse({ status: 200, schema: { example: { access_token: 'eyJ...' } } })
-  @ApiResponse({ status: 401, description: 'Invalid credentials' })
+  @ApiResponse({ status: 401, description: 'Credenciales inválidas' })
   @HttpCode(HttpStatus.OK)
   async login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);

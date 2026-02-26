@@ -20,12 +20,12 @@ export class CreateTripDto {
   @IsString()
   image_url?: string;
 
-  @ApiProperty({ example: '2026-06-01' })
+  @ApiProperty({ example: '2026-06-01T10:00:00Z' })
   @IsNotEmpty()
   @IsDateString()
   start_date: string;
 
-  @ApiPropertyOptional({ example: '2026-06-15' })
+  @ApiPropertyOptional({ example: '2026-06-15T10:00:00Z' })
   @IsOptional()
   @IsDateString()
   end_date?: string;

@@ -35,8 +35,8 @@ export class ActivitiesController {
   constructor(private readonly activitiesService: ActivitiesService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a new activity' })
-  @ApiResponse({ status: 201, description: 'Activity created successfully' })
+  @ApiOperation({ summary: 'Crea una nueva actividad' })
+  @ApiResponse({ status: 201, description: 'Actividad creada correctamente' })
   async create(
     @Body() createActivityDto: CreateActivityDto,
     @Req() req: RequestWithUser,
@@ -45,7 +45,7 @@ export class ActivitiesController {
   }
 
   @Get('trip/:tripId')
-  @ApiOperation({ summary: 'Get all activities for a trip' })
+  @ApiOperation({ summary: 'Obtén todas las actividades de un viaje' })
   async findByTrip(
     @Param('tripId') tripId: string,
     @Req() req: RequestWithUser,
@@ -54,13 +54,13 @@ export class ActivitiesController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get activity by id' })
+  @ApiOperation({ summary: 'Obtén una actividad por id' })
   async findOne(@Param('id') id: string, @Req() req: RequestWithUser) {
     return this.activitiesService.findOne(id, req.user.userId);
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Update activity' })
+  @ApiOperation({ summary: 'Actualiza una actividad' })
   async update(
     @Param('id') id: string,
     @Body() updateActivityDto: UpdateActivityDto,
@@ -74,7 +74,7 @@ export class ActivitiesController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete activity' })
+  @ApiOperation({ summary: 'Borra una actividad' })
   @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id') id: string, @Req() req: RequestWithUser) {
     return this.activitiesService.remove(id, req.user.userId);

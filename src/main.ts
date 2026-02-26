@@ -22,14 +22,16 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Smart Travel Planner API')
-    .setDescription('REST API for managing trips, locations and activities.')
+    .setDescription(
+      'API REST para gestionar viajes, ubicaciones y actividades.',
+    )
     .setVersion('1.0')
     .addTag('Auth')
-    .addTag('Users')
-    .addTag('Trips')
-    .addTag('Locations')
-    .addTag('Activities')
-    .addTag('Travel Requirements')
+    .addTag('Usuarios')
+    .addTag('Viajes')
+    .addTag('Ubicaciones')
+    .addTag('Actividades')
+    .addTag('Requisitos del viaje')
     .addBearerAuth()
     .build();
 

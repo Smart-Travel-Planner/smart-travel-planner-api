@@ -1,6 +1,6 @@
 # Smart Travel Planner API
 
-API REST para la gestión de viajes, localizaciones y actividades. Permite a los usuarios crear y gestionar itinerarios personalizados, añadir colaboradores a sus viajes y organizar actividades con fechas, costes y categorías.
+API REST para la gestión de viajes, ubicaciones y actividades. Permite a los usuarios crear y gestionar itinerarios personalizados, añadir colaboradores a sus viajes y organizar actividades con fechas, costes y categorías.
 
 ---
 
@@ -153,18 +153,18 @@ Gestión de colaboradores en un viaje. Solo el owner del viaje puede gestionar m
 | DELETE | `/trips/:tripId/members/:memberId` | Elimina un miembro del viaje |
 
 ### Locations
-CRUD de localizaciones. Son entidades reutilizables que pueden asociarse a actividades de cualquier viaje.
+CRUD de ubicaciones. Son entidades reutilizables que pueden asociarse a actividades de cualquier viaje.
 
 | Método | Endpoint | Descripción |
 |---|---|---|
-| POST | `/locations` | Crea una nueva localización |
-| GET | `/locations` | Lista todas las localizaciones |
-| GET | `/locations/:id` | Obtiene una localización por id |
-| PUT | `/locations/:id` | Actualiza una localización |
-| DELETE | `/locations/:id` | Elimina una localización |
+| POST | `/locations` | Crea una nueva ubicación |
+| GET | `/locations` | Lista todas las ubicaciones |
+| GET | `/locations/:id` | Obtiene una ubicación por id |
+| PUT | `/locations/:id` | Actualiza una ubicación |
+| DELETE | `/locations/:id` | Elimina una ubicación |
 
 ### Activities
-CRUD de actividades. Cada actividad pertenece a un viaje y opcionalmente a una localización. Tanto el owner como los colaboradores del viaje pueden gestionar actividades.
+CRUD de actividades. Cada actividad pertenece a un viaje y opcionalmente a una ubicación. Tanto el owner como los colaboradores del viaje pueden gestionar actividades.
 
 | Método | Endpoint | Descripción |
 |---|---|---|
@@ -204,7 +204,7 @@ Todos los endpoints están protegidos por defecto excepto `POST /auth/register` 
 
 El sistema cuenta con dos roles:
 
-- **user** — rol por defecto. Puede gestionar sus propios viajes, localizaciones y actividades.
+- **user** — rol por defecto. Puede gestionar sus propios viajes, ubicaciones y actividades.
 - **admin** — puede gestionar todos los usuarios del sistema.
 
 Los roles se gestionan mediante el decorador `@Roles('admin')` y el guard global `RolesGuard`.
@@ -220,7 +220,7 @@ El proyecto utiliza **Supabase (PostgreSQL)** como base de datos. Las tablas pri
 | `profiles` | Usuarios de la aplicación |
 | `trips` | Viajes creados por los usuarios |
 | `trip_members` | Colaboradores de cada viaje |
-| `locations` | Localizaciones reutilizables |
+| `locations` | Ubicaciones reutilizables |
 | `activities` | Actividades dentro de un viaje |
 | `travel_requirements` | Requisitos de documentación, salud y moneda por viaje |
 

@@ -42,7 +42,9 @@ export class LocationsService {
       .single();
 
     if (error || !rawData) {
-      throw new NotFoundException(error?.message ?? 'Error creating location');
+      throw new NotFoundException(
+        error?.message ?? 'Error creando una ubicación',
+      );
     }
 
     const data = rawData as LocationRecord;
@@ -91,7 +93,7 @@ export class LocationsService {
       .single();
 
     if (error || !rawData) {
-      throw new NotFoundException(`Location with id ${id} not found`);
+      throw new NotFoundException(`Ubicación con id ${id} no encontrada`);
     }
 
     const data = rawData as LocationRecord;
@@ -118,7 +120,7 @@ export class LocationsService {
 
     if (location.created_by !== userId) {
       throw new ForbiddenException(
-        'You do not have permission to edit this location',
+        'No tienes permiso para editar esta ubicación',
       );
     }
 
@@ -130,7 +132,9 @@ export class LocationsService {
       .single();
 
     if (error || !rawData) {
-      throw new NotFoundException(error?.message ?? 'Error updating location');
+      throw new NotFoundException(
+        error?.message ?? 'Error actualizando la ubicación',
+      );
     }
 
     const data = rawData as LocationRecord;
@@ -153,7 +157,7 @@ export class LocationsService {
 
     if (location.created_by !== userId) {
       throw new ForbiddenException(
-        'You do not have permission to delete this location',
+        'No tienes permiso para borrar esta ubicación',
       );
     }
 
@@ -166,6 +170,6 @@ export class LocationsService {
       throw new NotFoundException(error.message);
     }
 
-    return { message: 'Location deleted successfully' };
+    return { message: 'Ubicación borrada correctamente' };
   }
 }

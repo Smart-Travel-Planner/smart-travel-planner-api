@@ -37,14 +37,14 @@ export class TravelRequirementsController {
   ) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create travel requirements for a trip' })
+  @ApiOperation({ summary: 'Crear requisitos de viaje para un viaje' })
   @ApiResponse({
     status: 201,
-    description: 'Travel requirements created successfully',
+    description: 'Requisitos de viaje creados con éxito',
   })
   @ApiResponse({
     status: 409,
-    description: 'Travel requirements already exist for this trip',
+    description: 'Los requisitos de viaje ya existen para este viaje',
   })
   async create(
     @Body() createDto: CreateTravelRequirementsDto,
@@ -54,7 +54,7 @@ export class TravelRequirementsController {
   }
 
   @Get('trip/:tripId')
-  @ApiOperation({ summary: 'Get travel requirements for a trip' })
+  @ApiOperation({ summary: 'Obtén los requisitos de viaje para un viaje' })
   async findByTrip(
     @Param('tripId') tripId: string,
     @Req() req: RequestWithUser,
@@ -63,7 +63,7 @@ export class TravelRequirementsController {
   }
 
   @Put('trip/:tripId')
-  @ApiOperation({ summary: 'Update travel requirements for a trip' })
+  @ApiOperation({ summary: 'Actualizar los requisitos de viaje para un viaje' })
   async update(
     @Param('tripId') tripId: string,
     @Body() updateDto: UpdateTravelRequirementsDto,
@@ -77,7 +77,7 @@ export class TravelRequirementsController {
   }
 
   @Delete('trip/:tripId')
-  @ApiOperation({ summary: 'Delete travel requirements for a trip' })
+  @ApiOperation({ summary: 'Borrar requisitos de viaje para un viaje' })
   @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('tripId') tripId: string, @Req() req: RequestWithUser) {
     return this.travelRequirementsService.remove(tripId, req.user.userId);

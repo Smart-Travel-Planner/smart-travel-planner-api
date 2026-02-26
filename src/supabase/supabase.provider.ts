@@ -12,7 +12,7 @@ export const SupabaseProvider = {
 
     if (!url || !key) {
       throw new Error(
-        'SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not defined',
+        'SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY no está definido',
       );
     }
 

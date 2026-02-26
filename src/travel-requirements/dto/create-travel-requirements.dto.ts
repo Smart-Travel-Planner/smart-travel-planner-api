@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsObject, IsOptional, IsUUID } from 'class-validator';
 
@@ -12,7 +11,7 @@ export class CreateTravelRequirementsDto {
     example: {
       passport: true,
       visa: false,
-      visa_info: 'No visa required for EU citizens',
+      visa_info: 'No se requiere visado para ciudadanos de la UE',
     },
   })
   @IsOptional()

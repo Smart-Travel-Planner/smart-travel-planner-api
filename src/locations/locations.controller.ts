@@ -35,8 +35,11 @@ export class LocationsController {
   constructor(private readonly locationsService: LocationsService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a new location' })
-  @ApiResponse({ status: 201, description: 'Location created successfully' })
+  @ApiOperation({ summary: 'Crea una nueva ubicación' })
+  @ApiResponse({
+    status: 201,
+    description: 'Ubicación creada correctamente',
+  })
   async create(
     @Body() createLocationDto: CreateLocationDto,
     @Req() req: RequestWithUser,
@@ -45,19 +48,19 @@ export class LocationsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all locations' })
+  @ApiOperation({ summary: 'Obtén todas las ubicaciones' })
   async findAll() {
     return this.locationsService.findAll();
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get location by id' })
+  @ApiOperation({ summary: 'Obtén una ubicación por el id' })
   async findOne(@Param('id') id: string) {
     return this.locationsService.findOne(id);
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Update location' })
+  @ApiOperation({ summary: 'Actualiza una ubicación' })
   async update(
     @Param('id') id: string,
     @Body() updateLocationDto: UpdateLocationDto,
@@ -67,7 +70,7 @@ export class LocationsController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete location' })
+  @ApiOperation({ summary: 'Borra una ubicación' })
   @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id') id: string, @Req() req: RequestWithUser) {
     return this.locationsService.remove(id, req.user.userId);

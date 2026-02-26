@@ -1,7 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsEnum,
-  //   IsBoolean,
   IsNotEmpty,
   IsNumber,
   IsOptional,
