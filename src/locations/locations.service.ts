@@ -10,12 +10,13 @@ import { SUPABASE_CLIENT } from '../supabase/supabase.provider';
 import { CreateLocationDto } from './dto/create-location.dto';
 import { UpdateLocationDto } from './dto/update-location.dto';
 import { LocationResponseDto } from './dto/location-response.dto';
+import { ActivityCategory } from 'src/common/enums/activity-category.enum';
 
 interface LocationRecord {
   id: string;
   name: string;
   address?: string;
-  category?: string;
+  category: ActivityCategory;
   created_by?: string;
   is_verified?: boolean;
   lat: number;

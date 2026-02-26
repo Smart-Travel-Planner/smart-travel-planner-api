@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
+  IsEnum,
   //   IsBoolean,
   IsNotEmpty,
   IsNumber,
@@ -9,6 +9,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
+import { ActivityCategory } from '../../common/enums/activity-category.enum';
 
 export class CreateLocationDto {
   @ApiProperty({ example: 'Tokyo Tower' })
@@ -21,10 +22,10 @@ export class CreateLocationDto {
   @IsString()
   address?: string;
 
-  @ApiPropertyOptional({ example: 'monument' })
-  @IsOptional()
-  @IsString()
-  category?: string;
+  @ApiProperty({ enum: ActivityCategory, example: ActivityCategory.Cultura })
+  @IsNotEmpty()
+  @IsEnum(ActivityCategory)
+  category: ActivityCategory;
 
   @ApiProperty({ example: 35.6586 })
   @IsNotEmpty()
