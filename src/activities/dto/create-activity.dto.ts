@@ -2,6 +2,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsDateString,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -9,6 +10,7 @@ import {
   IsUUID,
   Min,
 } from 'class-validator';
+import { ActivityCategory } from 'src/common/enums/activity-category.enum';
 
 export class CreateActivityDto {
   @ApiProperty({ example: 'Visita a Tokyo Tower' })
@@ -26,29 +28,28 @@ export class CreateActivityDto {
   @IsUUID()
   location_id?: string;
 
-  @ApiPropertyOptional({ example: '2026-06-01T10:00:00Z' })
-  @IsOptional()
+  @ApiProperty({ example: '2026-06-01T10:00:00Z' })
+  @IsNotEmpty()
   @IsDateString()
-  start_time?: string;
+  start_time: string;
 
   @ApiPropertyOptional({ example: '2026-06-01T12:00:00Z' })
   @IsOptional()
   @IsDateString()
   end_time?: string;
 
-  @ApiPropertyOptional({ example: 25.5 })
-  @IsOptional()
+  @ApiProperty({ example: 0 })
   @IsNumber()
   @Min(0)
-  cost?: number;
+  cost: number;
+
+  @ApiProperty({ enum: ActivityCategory, example: ActivityCategory.Cultura })
+  @IsNotEmpty()
+  @IsEnum(ActivityCategory)
+  category: ActivityCategory;
 
   @ApiPropertyOptional({ example: 'Comprar entradas con antelación' })
   @IsOptional()
   @IsString()
   user_notes?: string;
-
-  @ApiPropertyOptional({ example: 'leisure' })
-  @IsOptional()
-  @IsString()
-  category?: string;
 }

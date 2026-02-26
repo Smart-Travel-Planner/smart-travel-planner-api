@@ -1,11 +1,13 @@
+import { ActivityCategory } from 'src/common/enums/activity-category.enum';
+
 export class ActivityResponseDto {
   id: string;
   title: string;
   trip_id: string;
   location_id?: string;
-  start_time?: string;
+  start_time: string;
   end_time?: string;
-  cost?: number;
+  cost: number;
   user_notes?: string;
-  category?: string;
+  category: ActivityCategory;
 }

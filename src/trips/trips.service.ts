@@ -35,7 +35,11 @@ export class TripsService {
   ): Promise<TripResponseDto> {
     const { data: rawData, error } = await this.supabase
       .from('trips')
-      .insert({ ...createTripDto, user_id: userId })
+      .insert({
+        ...createTripDto,
+        user_id: userId,
+        is_public: createTripDto.is_public ?? false,
+      })
       .select()
       .single();
 

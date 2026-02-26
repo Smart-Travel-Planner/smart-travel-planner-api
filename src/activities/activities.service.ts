@@ -10,17 +10,18 @@ import { SUPABASE_CLIENT } from '../supabase/supabase.provider';
 import { CreateActivityDto } from './dto/create-activity.dto';
 import { UpdateActivityDto } from './dto/update-activity.dto';
 import { ActivityResponseDto } from './dto/activity-response.dto';
+import { ActivityCategory } from 'src/common/enums/activity-category.enum';
 
 interface ActivityRecord {
   id: string;
   title: string;
   trip_id: string;
   location_id?: string;
-  start_time?: string;
+  start_time: string;
   end_time?: string;
-  cost?: number;
+  cost: number;
   user_notes?: string;
-  category?: string;
+  category: ActivityCategory;
 }
 
 interface TripRecord {
@@ -86,7 +87,12 @@ export class ActivitiesService {
 
     const { data: rawData, error } = await this.supabase
       .from('activities')
-      .insert(createActivityDto)
+      .insert({
+        ...createActivityDto,
+        location_id: createActivityDto.location_id ?? null,
+        end_time: createActivityDto.end_time ?? null,
+        user_notes: createActivityDto.user_notes ?? null,
+      })
       .select()
       .single();
 

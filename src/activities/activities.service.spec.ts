@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ActivitiesService } from './activities.service';
 import { ForbiddenException, NotFoundException } from '@nestjs/common';
 import { SUPABASE_CLIENT } from '../supabase/supabase.provider';
+import { ActivityCategory } from '../common/enums/activity-category.enum';
 
 const mockActivity = {
   id: 'activity-123',
@@ -12,7 +13,7 @@ const mockActivity = {
   end_time: '2026-06-01T12:00:00Z',
   cost: 25.5,
   user_notes: 'Comprar entradas con antelación',
-  category: 'leisure',
+  category: 'cultura',
 };
 
 const mockTrip = {
@@ -62,7 +63,7 @@ describe('ActivitiesService', () => {
           start_time: '2026-06-01T10:00:00Z',
           end_time: '2026-06-01T12:00:00Z',
           cost: 25.5,
-          category: 'leisure',
+          category: ActivityCategory.Cultura,
         },
         'user-123',
       );
@@ -103,7 +104,7 @@ describe('ActivitiesService', () => {
           start_time: '2026-06-01T10:00:00Z',
           end_time: '2026-06-01T12:00:00Z',
           cost: 25.5,
-          category: 'leisure',
+          category: ActivityCategory.Cultura,
         },
         'collaborator-123',
       );
@@ -135,6 +136,9 @@ describe('ActivitiesService', () => {
           {
             title: 'Visita a Tokyo Tower',
             trip_id: 'trip-123',
+            start_time: '',
+            cost: 0,
+            category: ActivityCategory.Transporte,
           },
           'usuario-sin-acceso',
         ),

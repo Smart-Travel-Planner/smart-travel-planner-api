@@ -21,23 +21,22 @@ export class CreateTripDto {
   @IsString()
   image_url?: string;
 
-  @ApiPropertyOptional({ example: '2026-06-01' })
-  @IsOptional()
+  @ApiProperty({ example: '2026-06-01' })
+  @IsNotEmpty()
   @IsDateString()
-  start_date?: string;
+  start_date: string;
 
   @ApiPropertyOptional({ example: '2026-06-15' })
   @IsOptional()
   @IsDateString()
   end_date?: string;
 
-  @ApiPropertyOptional({ example: 3000 })
-  @IsOptional()
+  @ApiProperty({ example: 3000 })
   @IsNumber()
   @Min(0)
-  total_budget?: number;
+  total_budget: number;
 
-  @ApiPropertyOptional({ example: false })
+  @ApiPropertyOptional({ example: false, default: false })
   @IsOptional()
   @IsBoolean()
   is_public?: boolean;
