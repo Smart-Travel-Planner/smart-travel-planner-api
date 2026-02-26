@@ -16,10 +16,10 @@ interface TripRecord {
   title: string;
   user_id: string;
   image_url?: string;
-  start_date?: string;
+  start_date: string;
   end_date?: string;
-  total_budget?: number;
-  is_public?: boolean;
+  total_budget: number;
+  is_public: boolean;
   created_at: string;
 }
 

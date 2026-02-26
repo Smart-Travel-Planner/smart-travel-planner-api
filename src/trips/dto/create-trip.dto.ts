@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsBoolean,
@@ -36,8 +35,8 @@ export class CreateTripDto {
   @Min(0)
   total_budget: number;
 
-  @ApiPropertyOptional({ example: false, default: false })
-  @IsOptional()
+  @ApiProperty({ example: false, default: false })
+  @IsNotEmpty()
   @IsBoolean()
-  is_public?: boolean;
+  is_public: boolean;
 }
