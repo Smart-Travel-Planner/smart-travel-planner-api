@@ -6,6 +6,7 @@ import { SUPABASE_CLIENT } from '../supabase/supabase.provider';
 const mockTrip = {
   id: 'trip-123',
   title: 'Viaje a Japón',
+  destination: 'Tokio, Japón',
   user_id: 'user-123',
   image_url: null,
   start_date: '2026-01-01T00:00:00Z',

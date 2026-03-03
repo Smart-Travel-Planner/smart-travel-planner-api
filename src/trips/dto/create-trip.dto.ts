@@ -15,6 +15,11 @@ export class CreateTripDto {
   @IsString()
   title: string;
 
+  @ApiPropertyOptional({ example: 'Tokio, Japón' })
+  @IsOptional()
+  @IsString()
+  destination?: string;
+
   @ApiPropertyOptional({ example: 'https://example.com/image.jpg' })
   @IsOptional()
   @IsString()

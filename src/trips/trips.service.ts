@@ -14,6 +14,7 @@ import { TripResponseDto } from './dto/trip-response.dto';
 interface TripRecord {
   id: string;
   title: string;
+  destination?: string;
   user_id: string;
   image_url?: string;
   start_date: string;
@@ -51,6 +52,7 @@ export class TripsService {
     return {
       id: data.id,
       title: data.title,
+      destination: data.destination,
       user_id: data.user_id,
       image_url: data.image_url,
       start_date: data.start_date,
@@ -74,6 +76,7 @@ export class TripsService {
     return (rawData as TripRecord[]).map((trip) => ({
       id: trip.id,
       title: trip.title,
+      destination: trip.destination,
       user_id: trip.user_id,
       image_url: trip.image_url,
       start_date: trip.start_date,
@@ -97,6 +100,7 @@ export class TripsService {
     return (rawData as TripRecord[]).map((trip) => ({
       id: trip.id,
       title: trip.title,
+      destination: trip.destination,
       user_id: trip.user_id,
       image_url: trip.image_url,
       start_date: trip.start_date,
@@ -127,6 +131,7 @@ export class TripsService {
     return {
       id: trip.id,
       title: trip.title,
+      destination: trip.destination,
       user_id: trip.user_id,
       image_url: trip.image_url,
       start_date: trip.start_date,
@@ -165,6 +170,7 @@ export class TripsService {
     return {
       id: data.id,
       title: data.title,
+      destination: data.destination,
       user_id: data.user_id,
       image_url: data.image_url,
       start_date: data.start_date,

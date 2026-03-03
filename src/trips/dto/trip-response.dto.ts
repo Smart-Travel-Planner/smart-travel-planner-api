@@ -1,6 +1,7 @@
 export class TripResponseDto {
   id: string;
   title: string;
+  destination?: string;
   user_id: string;
   image_url?: string;
   start_date: string;
