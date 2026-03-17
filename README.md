@@ -125,6 +125,7 @@ Gestión de perfiles de usuario. Los usuarios pueden ver y editar su propio perf
 |---|---|---|---|
 | GET | `/users` | Lista todos los usuarios | admin |
 | GET | `/users/me` | Obtiene el perfil propio | user |
+| GET | `/users/:id/public` | Obtiene el nombre de un usuario por id | user |
 | GET | `/users/:id` | Obtiene un usuario por id | admin |
 | PUT | `/users/me` | Actualiza el perfil propio | user |
 | PUT | `/users/:id` | Actualiza un usuario por id | admin |
