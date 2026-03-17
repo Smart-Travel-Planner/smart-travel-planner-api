@@ -8,7 +8,8 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      'http://localhost:4200',
+      'http://smart-travel-planner-web.vercel.app',
+      // 'http://localhost:4200',
       // añadir las URLs de producción cuando estén
     ],
   });
