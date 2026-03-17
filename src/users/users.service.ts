@@ -115,4 +115,18 @@ export class UsersService {
 
     return { message: 'Usuario borrado correctamente' };
   }
+
+  async findPublicProfile(id: string): Promise<{ id: string; name: string }> {
+    const { data, error } = await this.supabase
+      .from('profiles')
+      .select('id, name')
+      .eq('id', id)
+      .single();
+
+    if (error || !data) {
+      throw new NotFoundException(`Usuario con id ${id} no encontrado`);
+    }
+
+    return { id: (data as UserRecord).id, name: (data as UserRecord).name };
+  }
 }

@@ -37,6 +37,15 @@ export class UsersController {
     return this.usersService.findOne(req.user.userId);
   }
 
+  @Get(':id/public')
+  @ApiOperation({
+    summary: 'Obtén nombre de un usuario por id (usuarios autenticados)',
+  })
+  @ApiResponse({ status: 200, description: 'Perfil público del usuario' })
+  async findPublicProfile(@Param('id') id: string) {
+    return this.usersService.findPublicProfile(id);
+  }
+
   @Get(':id')
   @Roles('admin')
   @ApiOperation({ summary: 'Obtén usuario por id (solo admin)' })
