@@ -11,6 +11,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './common/guards/roles.guard';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { TripMembersModule } from './trip-members/trip-members.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { TripMembersModule } from './trip-members/trip-members.module';
       isGlobal: true,
     }),
     SupabaseModule,
+    HealthModule,
     AuthModule,
     UsersModule,
     TripsModule,
