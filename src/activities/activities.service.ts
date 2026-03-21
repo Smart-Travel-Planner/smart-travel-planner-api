@@ -27,6 +27,7 @@ interface ActivityRecord {
 interface TripRecord {
   id: string;
   user_id: string;
+  is_public: boolean;
 }
 
 @Injectable()
@@ -53,7 +54,7 @@ export class ActivitiesService {
   ): Promise<void> {
     const { data: rawData, error } = await this.supabase
       .from('trips')
-      .select('id, user_id')
+      .select('id, user_id, is_public')
       .eq('id', tripId)
       .single();
 
@@ -67,6 +68,9 @@ export class ActivitiesService {
       return;
     }
 
+    if (trip.is_public) {
+      return;
+    }
     const { data: member } = await this.supabase
       .from('trip_members')
       .select('id')
