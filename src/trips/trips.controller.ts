@@ -19,6 +19,7 @@ import {
 import { TripsService } from './trips.service';
 import { CreateTripDto } from './dto/create-trip.dto';
 import { UpdateTripDto } from './dto/update-trip.dto';
+import { AiService } from '../ai/ai.service';
 
 interface RequestWithUser extends Request {
   user: {
@@ -32,7 +33,10 @@ interface RequestWithUser extends Request {
 @ApiBearerAuth()
 @Controller('trips')
 export class TripsController {
-  constructor(private readonly tripsService: TripsService) {}
+  constructor(
+    private readonly tripsService: TripsService,
+    private readonly aiService: AiService,
+  ) {}
 
   @Post()
   @ApiOperation({ summary: 'Crea un nuevo viaje' })
@@ -77,5 +81,11 @@ export class TripsController {
   @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id') id: string, @Req() req: RequestWithUser) {
     return this.tripsService.remove(id, req.user.userId);
+  }
+
+  @Get(':id/requirements')
+  async getRequirements(@Param('id') id: string) {
+    // Aquí llamamos al método del servicio que tiene el Mock
+    return await this.aiService.generateTravelRequirements(id);
   }
 }
