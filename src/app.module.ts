@@ -12,6 +12,9 @@ import { RolesGuard } from './common/guards/roles.guard';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { TripMembersModule } from './trip-members/trip-members.module';
 import { HealthModule } from './health/health.module';
+import { AiService } from './ai/ai.service';
+import { AiController } from './ai/ai.controller';
+import { AiModule } from './ai/ai.module';
 
 @Module({
   imports: [
@@ -27,8 +30,9 @@ import { HealthModule } from './health/health.module';
     ActivitiesModule,
     TravelRequirementsModule,
     TripMembersModule,
+    AiModule,
   ],
-  controllers: [],
+  controllers: [AiController],
   providers: [
     {
       provide: APP_GUARD,
@@ -38,6 +42,7 @@ import { HealthModule } from './health/health.module';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    AiService,
   ],
 })
 export class AppModule {}
