@@ -6,7 +6,7 @@ import { AiService } from './ai.service';
 class GenerateRequirementsDto {
   @IsNotEmpty()
   @IsString()
-  destination: string;
+  destination!: string;
 }
 
 @ApiBearerAuth()
@@ -19,7 +19,7 @@ export class AiController {
   @ApiOperation({
     summary: 'Genera requisitos de viaje con IA dado un destino',
   })
-  generateRequirements(@Body() body: GenerateRequirementsDto) {
-    return this.aiService.generateTravelRequirements(body.destination);
+  async generateRequirements(@Body() body: GenerateRequirementsDto) {
+    return await this.aiService.generateTravelRequirements(body.destination);
   }
 }
